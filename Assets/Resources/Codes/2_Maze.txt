@@ -1,0 +1,82 @@
+/*
+ * The following variables and functions are avaliable to the player: 
+ *
+ * int EXIT_COL;
+ * int EXIT_ROW;
+ * int LEVEL_WIDTH;
+ * int LEVEL_HEIGHT;
+ *
+ * int col();
+ * int row();
+ *
+ * void move_up();
+ * void move_down();
+ * void move_left();
+ * void move_right();
+ *
+ * string get_tile(int col, int row);
+ *
+ * void print(any message);
+ *
+ * void global_set(string name, any value);
+ * void global_unset(string name);
+ * bool global_check(string name);
+ * any global_get(string name);
+ */
+
+// Here is the solution:
+
+void main()
+{
+    if (!global_check("moves"))
+    {
+        let visited = set();
+        solve(col(), row(), "", visited);
+    }
+
+    let moves = global_get("moves");
+
+    for i = 0 to len(moves) - 1
+    {
+        let move = char_get(moves, i);
+        if (move == "U") move_up();
+            else if (move == "D") move_down();
+            else if (move == "L") move_left();
+            else if (move == "R") move_right();
+    }
+}
+
+bool is_valid(int x, int y, set visited)
+{
+    if (x < 0 || x >= LEVEL_WIDTH || y < 0 || y >= LEVEL_HEIGHT)
+        return false;
+
+    if (get_tile(x, y) == "Wall" || set_in(visited, x + "-" + y))
+        return false;
+ 
+    return true;
+}
+
+void solve(int x, int y, string moves, set visited)
+{
+    if global_check("moves") return;
+
+    if x == EXIT_COL && y == EXIT_ROW
+        global_set("moves", moves);  
+    
+    set_add(visited, x + "-" + y);
+ 
+    if is_valid(x, y + 1, visited)
+        solve(x, y + 1, moves + "U", visited);
+
+    if is_valid(x, y - 1, visited)
+        solve(x, y - 1, moves + "D", visited);
+
+    if is_valid(x - 1, y, visited)
+        solve(x - 1, y, moves + "L", visited);
+
+    if is_valid(x + 1, y, visited)
+        solve(x + 1, y, moves + "R", visited);
+ 
+    set_remove(visited, x + "-" + y);
+}

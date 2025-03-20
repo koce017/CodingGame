@@ -1,0 +1,53 @@
+/*
+ * The following variables and functions are avaliable to the player:
+ *
+ * float x();
+ * float y();
+ *
+ * int robot_count();
+ * float robot_x(int robotIndex);
+ * float robot_y(int robotIndex);
+ *
+ * void shoot(int robotIndex);
+ *
+ * void print(any message);
+ */
+
+// Here is the solution:
+
+void main()
+{
+    let r = list<int>();
+    let d = list<float>();
+
+    for i = 0 to robot_count() - 1
+    {
+        list_add(r, i);
+        list_add(d, distance(i));
+    }
+
+    for i = 0 to robot_count() - 2
+        for j = 0 to robot_count() - i - 2
+            if (d[j] > d[j + 1])
+            {
+                let tempF = d[j + 1];
+                d[j + 1] = d[j];
+                d[j] = tempF;
+                let tempI = r[j + 1];
+                r[j + 1] = r[j];
+                r[j] = tempI;
+            }
+
+    for i = 0 to robot_count() - 1
+        shoot(r[i]);
+}
+
+float distance(int r)
+{
+    return sqrt(sqr(x() - robot_x(r)) + sqr(y() - robot_y(r)));
+}
+
+float sqr(float x)
+{
+    return x * x;
+}
