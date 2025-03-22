@@ -769,7 +769,7 @@ namespace InGameCodeEditor
             }
 
             inputText.text = inputField.text;
-            inputText.SetText(inputField.text, true);
+            inputText.SetText(inputField.text);
             inputText.Rebuild(CanvasUpdate.Prelayout);
             inputField.ForceLabelUpdate();
             inputField.Rebuild(CanvasUpdate.Prelayout);

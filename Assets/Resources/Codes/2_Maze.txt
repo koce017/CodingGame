@@ -16,15 +16,6 @@
  *
  * string get_tile(int col, int row);
  *
- * int string_len(string str);
- * string string_char(string str, int index);
- *
- * int set_create();
- * void set_destroy(int set);
- * void set_add(int set, any value);
- * void set_remove(int set, any value);
- * bool set_in(int set, any value);
- *
  * void print(any message);
  *
  * void global_set(string name, any value);
@@ -37,22 +28,22 @@
 
 if (!global_check("moves"))
 {
-    let visited = set_create();
+    let visited = {};
     solve(col(), row(), "", visited);
 }
 
 let moves = global_get("moves");
 
-for i = 0 to string_len(moves) - 1
+for i = 0 to len(moves) - 1
 {
-    let move = string_char(moves, i);
+    let move = char_get(moves, i);
     if (move == "U") move_up();
         else if (move == "D") move_down();
         else if (move == "L") move_left();
         else if (move == "R") move_right();
 }
 
-bool is_valid(int x, int y, int visited)
+bool is_valid(int x, int y, set visited)
 {
     if (x < 0 || x >= LEVEL_WIDTH || y < 0 || y >= LEVEL_HEIGHT)
         return false;
@@ -62,8 +53,8 @@ bool is_valid(int x, int y, int visited)
  
     return true;
 }
- 
-void solve(int x, int y, string moves, int visited)
+
+void solve(int x, int y, string moves, set visited)
 {
     if global_check("moves") return;
 

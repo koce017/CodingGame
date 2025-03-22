@@ -15,8 +15,8 @@ public class RobotInTurretLevel : MonoBehaviour
     {
         spawnPosition = transform.position;
         animator = GetComponent<Animator>();
-        turret = FindObjectOfType<Turret>();
-        executor = FindObjectOfType<Executor>();
+        turret = FindFirstObjectByType<Turret>();
+        executor = FindFirstObjectByType<Executor>();
     }
 
     private void Update()

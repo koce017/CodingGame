@@ -27,7 +27,7 @@ public class RobotInMazeLevel : MonoBehaviour
 	private void Awake()
 	{
 		animator = GetComponent<Animator>();
-		mazeLoader = FindObjectOfType<LevelLoader>();
+		mazeLoader = FindFirstObjectByType<LevelLoader>();
 		animator.speed = 1.3f;
 	}
 
