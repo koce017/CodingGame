@@ -7,8 +7,8 @@ public class PlayButton : MonoBehaviour
 
     private void Awake()
     {
-        executor = FindObjectOfType<Executor>();
-        stopButton = FindObjectOfType<StopButton>(true);
+        executor = FindFirstObjectByType<Executor>();
+        stopButton = FindFirstObjectByType<StopButton>(FindObjectsInactive.Include);
     }
 
     public void OnClick()

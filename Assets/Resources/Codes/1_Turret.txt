@@ -5,25 +5,21 @@
  * float y();
  *
  * int robot_count();
- * float robot.x(int robotIndex);
- * float robot.y(int robotIndex);
+ * float robot_x(int robotIndex);
+ * float robot_y(int robotIndex);
  *
  * void shoot(int robotIndex);
  *
- * int list_create();
- * void list_destroy(int listIndex);
- * void list_add(int listIndex, any value);
- * any list_get(int listIndex, int index);
- * void list_set(int listIndex, int index, any value);
- * int list_count(int listIndex);
+ * int list_count(list l);
+ * void list_add(list l, any value);
  *
  * void print(any message);
  */
 
 // Here is the solution:
 
-let r = list_create();
-let d = list_create();
+let r = int[];
+let d = float[];
 
 for i = 0 to robot_count() - 1
 {
@@ -33,25 +29,22 @@ for i = 0 to robot_count() - 1
 
 for i = 0 to robot_count() - 2
     for j = 0 to robot_count() - i - 2
-        if (list_get_f(d, j) > list_get_f(d, j + 1))
+        if (d[j] > d[j + 1])
         {
-            let tempF = list_get_f(d, j + 1);
-            list_set(d, j + 1, list_get_f(d, j));
-            list_set(d, j, tempF);
-            let tempI = list_get_i(r, j + 1);
-            list_set(r, j + 1, list_get_i(r, j));
-            list_set(r, j, tempI);
+            let tempF = d[j + 1];
+            d[j + 1] = d[j];
+            d[j] = tempF;
+            let tempI = r[j + 1];
+            r[j + 1] = r[j];
+            r[j] = temp;
         }
 
 for i = 0 to robot_count() - 1
-	shoot(list_get_i(r, i));
-
-list_destroy(r);
-list_destroy(d);
+	shoot(r[i]);
 
 float distance(int r)
 {
-    return sqrt(sqr(x() - robot.x(r)) + sqr(y() - robot.y(r)));
+    return sqrt(sqr(x() - robot_x(r)) + sqr(y() - robot_y(r)));
 }
 
 float sqr(float x)

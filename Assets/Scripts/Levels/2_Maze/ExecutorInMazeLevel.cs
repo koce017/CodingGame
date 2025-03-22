@@ -23,12 +23,12 @@ public class ExecutorInMazeLevel : Executor
     {
         base.Stop();
         globals.Clear();
-        Destroy(FindObjectOfType<RobotInMazeLevel>().gameObject);
+        Destroy(FindFirstObjectByType<RobotInMazeLevel>().gameObject);
     }
 
     internal void StartExecution(RobotInMazeLevel robot)
     {
-        var b = new Builtins();
+        var b = new BuiltinBag();
 
         b.RegisterVariable(PigeonType.Int, "EXIT_COL", true, levelLoader.Maze.Exit.x);
         b.RegisterVariable(PigeonType.Int, "EXIT_ROW", true, levelLoader.Maze.Exit.y);
@@ -45,15 +45,6 @@ public class ExecutorInMazeLevel : Executor
         b.RegisterFunction(PigeonType.Void, "move_right", robot.MoveRight);
 
         b.RegisterFunction(PigeonType.String, "get_tile", levelLoader.Maze.GetTile, PigeonType.Int, PigeonType.Int);
-
-        b.RegisterFunction(PigeonType.Int, "string_len", PigeonString.Length, PigeonType.String);
-        b.RegisterFunction(PigeonType.String, "string_char", PigeonString.Char, PigeonType.String, PigeonType.Int);
-
-        b.RegisterFunction(PigeonType.Int, "set_create", PigeonSet.Create);
-        b.RegisterFunction(PigeonType.Void, "set_destroy", PigeonSet.Destroy, PigeonType.Int);
-        b.RegisterFunction(PigeonType.Void, "set_add", PigeonSet.Add, PigeonType.Int, PigeonType.Any);
-        b.RegisterFunction(PigeonType.Any, "set_remove", PigeonSet.Remove, PigeonType.Int, PigeonType.Any);
-        b.RegisterFunction(PigeonType.Bool, "set_in", PigeonSet.In, PigeonType.Int, PigeonType.Any);
 
         b.RegisterFunction(PigeonType.Void, "global_set", GlobalSet, PigeonType.String, PigeonType.Any);
         b.RegisterFunction(PigeonType.Void, "global_unset", GlobalUnset, PigeonType.String);

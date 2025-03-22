@@ -11,7 +11,7 @@ public class PigeonCodeEditor : MonoBehaviour
 
     void Awake()
     {
-        playButton = FindObjectOfType<PlayButton>();
+        playButton = FindFirstObjectByType<PlayButton>();
         freeCam = Camera.main.GetComponent<FreeCam>();
         inGameCodeEditor = GetComponent<InGameCodeEditor.CodeEditor>();
         Code = Resources.Load<TextAsset>($"Codes/{SceneManager.GetActiveScene().name}").text;
