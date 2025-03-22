@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0a955a6baef27468893681ab13e59d, type: 3}
   m_Name: Syntax
   m_EditorClassIdentifier: 
-  languageName: C#
+  languageName: Pigeon
   delimiterSymbols: '[ ] ( ) { } ; : , .'
   keywordGroups:
   - group: Keyword Group
-    keywords: if else for to downto do while break continue return bool int float
-      string void true false let const
+    keywords: if else for to do while break continue return void int float string
+      bool set true false let const
     highlightColor: {r: 0.3372549, g: 0.6117647, b: 0.8392157, a: 1}
     caseSensitive: 1
   symbolGroup:

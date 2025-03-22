@@ -21,8 +21,8 @@ public class Turret : MonoBehaviour
     void Start()
     {
         lastShoot = Time.time;
-        robots = FindObjectsOfType<RobotInTurretLevel>();
-        executor = FindObjectOfType<ExecutorInTurretLevel>();
+        robots = FindObjectsByType<RobotInTurretLevel>(FindObjectsSortMode.None);
+        executor = FindFirstObjectByType<ExecutorInTurretLevel>();
     }
 
     void Update()

@@ -19,8 +19,6 @@ public class Executor : MonoBehaviour
     internal virtual void Stop()
     {
         IsRunning = false;
-        PigeonSet.Clear();
-        PigeonList.Clear();
         editButton.gameObject.SetActive(true);
     }
 
